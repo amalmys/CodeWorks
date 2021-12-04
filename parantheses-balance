@@ -1,0 +1,25 @@
+const exprMap = {
+  '{': '}',
+  '(': ')',
+  '[': ']'
+}
+
+const bracketArray = ['{', '}', '[', ']', '(', ')'];
+
+function isValidExpression(expression) {
+  var exprStack = [];
+  for (var exprIndex = 0; exprIndex < expression.length; exprIndex++) {
+    if (!bracketArray.includes(expression[exprIndex]))
+      continue;
+    if (expression[exprIndex] == '{' || expression[exprIndex] == '[' || expression[exprIndex] == '(')
+      exprStack.push(expression[exprIndex]);
+    else
+    if (expression[exprIndex] !== exprMap[exprStack.pop()])
+      return false
+  }
+  return true;
+}
+
+console.log(isValidExpression('[()]{}{[()()]()}'));
+
+console.log(isValidExpression('[3,4]'));
